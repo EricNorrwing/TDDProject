@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class PlayerInteractionTest {
 
     private Player player;
-    private Scanner scanner;
 
     @BeforeEach
     public void setup() {
@@ -16,17 +15,14 @@ public class PlayerInteractionTest {
         createPlayerInteraction("Eric");
     }
 
-    private void createPlayerInteraction(String dataForScanner) {
-        scanner = new Scanner(dataForScanner);
+    private PlayerInteraction createPlayerInteraction(String dataForScanner) {
+        Scanner scanner = new Scanner(dataForScanner);
         IOHandler ioHandler = new IOHandler(scanner);
         SimplePlayerInteraction playerInteraction = new SimplePlayerInteraction(ioHandler);
         playerInteraction.setupPlayer(player);
+        return playerInteraction;
     }
 
-    private PlayerInteraction createPlayerInteraction() {
-        IOHandler ioHandler = new IOHandler(scanner);
-        return new SimplePlayerInteraction(ioHandler);
-    }
 
     @Test
     @DisplayName("Testing player setup")
@@ -37,9 +33,9 @@ public class PlayerInteractionTest {
     @Test
     @DisplayName("Testing player health update")
     public void testUpdatePlayerHealth() {
-        PlayerInteraction playerInteraction = createPlayerInteraction();
+        PlayerInteraction playerInteraction = createPlayerInteraction("Eric");
         player.setHp(10);
-        playerInteraction.updatePlayerHealth(player, 5);
-        assertEquals(15, player.getHp());
+        playerInteraction.updatePlayerHealth(player, -5);
+        assertEquals(5, player.getHp());
     }
 }
