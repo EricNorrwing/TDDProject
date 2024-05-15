@@ -38,7 +38,7 @@ public class PlayerControllerTest {
         driver.get("http://localhost:8080/players");
         List<WebElement> playerItems = driver.findElements(By.tagName("li"));
 
-        Assertions.assertEquals(3, playerItems.size(), "unable to assert the amount of players");
+        Assertions.assertEquals(3, playerItems.size(), "unable to correctly assert playerlist size");
     }
 
     @Test
@@ -50,5 +50,20 @@ public class PlayerControllerTest {
         Assertions.assertTrue(firstPlayerNameElement.isDisplayed(), "unable to to verify the first element in list");
     }
 
+    @Test
+    @DisplayName("Testing the title of the page")
+    public void testTitle() {
+        driver.get("http://localhost:8080/players");
+        String title = driver.getTitle();
+        Assertions.assertEquals("Players List", title);
+    }
+
+    @Test
+    @DisplayName("Testing that the button has the text 'logga in' ")
+    public void testLoginButtonText () {
+        driver.get("http://localhost:8080/players");
+        String buttonText = driver.findElement(By.tagName("button")).getText();
+        Assertions.assertEquals("Logga in", buttonText);
+    }
 
 }

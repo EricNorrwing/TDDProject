@@ -11,6 +11,9 @@
     <li th:each="player : ${players}">
         <span class="player-name" th:text="${player.name}">Player Name</span>
         <span class="player-experience" th:text="${player.experience}">Experience</span>
+        <a th:href="@{/players/{id}(id=${player.id})}">
+            <button>Go to player</button>
+        </a>
     </li>
 </ul>
 </body>
