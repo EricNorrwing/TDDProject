@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
 
-public class TestScanner {
+public class ScannerTest {
 
     Scanner scanner;
 

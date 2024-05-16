@@ -4,7 +4,7 @@ import org.junit.jupiter.api.*;
 
 import java.util.Scanner;
 
-public class TestIOHandler {
+public class IOHandlerTest {
 
     Scanner scanner;
     private IOHandler createIOHandler (String dataForScanner) {

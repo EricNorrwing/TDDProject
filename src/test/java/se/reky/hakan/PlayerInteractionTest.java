@@ -5,7 +5,7 @@ import se.reky.hakan.model.Player;
 import java.util.Scanner;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestPlayerInteraction {
+public class PlayerInteractionTest {
 
     private Player player;
 
