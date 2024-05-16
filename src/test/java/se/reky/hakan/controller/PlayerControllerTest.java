@@ -6,7 +6,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 @Disabled
@@ -70,11 +73,12 @@ public class PlayerControllerTest {
     @DisplayName("Testing that link to individual players works correctly")
     public void testSpecificPlayerButton() {
         driver.get("http://localhost:8080/players");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         WebElement playerNameElement = driver.findElement(By.xpath("//span[@class='player-name']"));
         String playerNameInPlayerList = playerNameElement.getText();
 
-        WebElement button = driver.findElement(By.xpath("(//button[text()='Go to player'])[1]"));
+        WebElement button = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//button[text()='Go to player'])[1]")));
         button.click();
 
         WebElement playerNameElementInSpecificPlayer = driver.findElement(By.xpath("//span[@class='player-name'][1]"));
