@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import se.reky.hakan.model.Player;
 import se.reky.hakan.service.PlayerService;
 
+import java.util.List;
+
 @Controller
 public class PlayerController {
     private final PlayerService playerService;
@@ -27,5 +29,9 @@ public class PlayerController {
         Player specificPlayer = playerService.findPlayerById(id);
         model.addAttribute("specificPlayer", specificPlayer);
         return "specificPlayer";
+    }
+
+    public List<Player> getPlayers () {
+        return playerService.findAllPlayersSortedByExperience();
     }
 }

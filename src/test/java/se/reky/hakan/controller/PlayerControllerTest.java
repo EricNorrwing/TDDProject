@@ -8,6 +8,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import se.reky.hakan.model.Player;
+import se.reky.hakan.repository.PlayerRepository;
+import se.reky.hakan.service.PlayerService;
+import se.reky.hakan.web.PlayerController;
 
 import java.time.Duration;
 import java.util.List;
@@ -39,6 +45,7 @@ public class PlayerControllerTest {
     @DisplayName("Testing whether the amount of players in list is correct")
     public void testAmountOfPlayers() {
         driver.get("http://localhost:8080/players");
+
         List<WebElement> playerItems = driver.findElements(By.tagName("li"));
 
         Assertions.assertEquals(3, playerItems.size(), "unable to correctly assert playerlist size");
@@ -78,11 +85,12 @@ public class PlayerControllerTest {
         WebElement playerNameElement = driver.findElement(By.xpath("//span[@class='player-name']"));
         String playerNameInPlayerList = playerNameElement.getText();
 
-        WebElement button = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//button[text()='Go to player'])[1]")));
+        WebElement button = driver.findElement(By.xpath("(//button[text()='Go to player'])[1]"));
         button.click();
 
-        WebElement playerNameElementInSpecificPlayer = driver.findElement(By.xpath("//span[@class='player-name'][1]"));
+        WebElement playerNameElementInSpecificPlayer = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='player-name'][1]")));
         String playerNameInSpecificPlayer = playerNameElementInSpecificPlayer.getText();
+
 
         Assertions.assertEquals(playerNameInPlayerList, playerNameInSpecificPlayer);
     }
