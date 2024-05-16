@@ -7,7 +7,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.time.Duration;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Disabled
 public class TestPlayerController {
@@ -64,6 +66,23 @@ public class TestPlayerController {
         driver.get("http://localhost:8080/players");
         String buttonText = driver.findElement(By.tagName("button")).getText();
         Assertions.assertEquals("Logga in", buttonText);
+    }
+
+    @Test
+    @DisplayName("Testing that link to individual players works correctly")
+    public void testSpecificPlayerButton() {
+        driver.get("http://localhost:8080/players");
+
+        WebElement playerNameElement = driver.findElement(By.xpath("//span[@class='player-name']"));
+        String playerNameInPlayerList = playerNameElement.getText();
+
+        WebElement button = driver.findElement(By.xpath("(//button[text()='Go to player'])[1]"));
+        button.click();
+
+        WebElement playerNameElementInSpecificPlayer = driver.findElement(By.xpath("//span[@class='player-name'][1]"));
+        String playerNameInSpecificPlayer = playerNameElementInSpecificPlayer.getText();
+
+        Assertions.assertEquals(playerNameInPlayerList, playerNameInSpecificPlayer);
     }
 
 }
