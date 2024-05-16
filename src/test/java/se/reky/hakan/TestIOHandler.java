@@ -1,11 +1,10 @@
 package se.reky.hakan;
 
 import org.junit.jupiter.api.*;
-import org.springframework.util.Assert;
 
 import java.util.Scanner;
 
-public class IOHandlerTest {
+public class TestIOHandler {
 
     Scanner scanner;
     private IOHandler createIOHandler (String dataForScanner) {

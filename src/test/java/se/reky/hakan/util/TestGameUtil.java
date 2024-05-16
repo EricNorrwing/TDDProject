@@ -4,7 +4,7 @@ import org.junit.jupiter.api.*;
 import se.reky.hakan.GameException;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class GameUtilTest {
+public class TestGameUtil {
 
     private GameUtil gameUtil;
 
