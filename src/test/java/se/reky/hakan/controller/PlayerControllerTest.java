@@ -9,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.List;
 
-@Disabled
+
 public class PlayerControllerTest {
 
     private WebDriver driver;
